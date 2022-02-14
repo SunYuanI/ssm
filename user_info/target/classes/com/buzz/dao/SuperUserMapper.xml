@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buzz.dao.SuperUserMapper">
+    <resultMap id="superUserMap" type="SuperUser">
+        <id property="id" column="id"/>
+        <result property="name" column="superuser_name"/>
+        <result property="password" column="superuser_password"/>
+    </resultMap>
+    <select id="getUser" parameterType="superUser" resultMap="superUserMap">
+        select * from superuser 
+        <where>
+            <if test="name != null">
+                and superuser_name = #{name}
+            </if>
+            <if test="password != null">
+                and superuser_password = #{password}
+            </if>
+        </where>
+    </select>
+</mapper>

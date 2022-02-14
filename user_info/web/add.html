@@ -1,0 +1,85 @@
+<!-- HTML5文档-->
+<!DOCTYPE html>
+<!-- 网页使用的语言 -->
+<html lang="zh-CN">
+<head>
+    <!-- 指定字符集 -->
+    <meta charset="utf-8">
+    <!-- 使用Edge最新的浏览器的渲染方式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- viewport视口：网页可以根据设置的宽度自动进行适配，在浏览器的内部虚拟一个容器，容器的宽度与设备的宽度相同。
+    width: 默认宽度与设备的宽度相同
+    initial-scale: 初始的缩放比，为1:1 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>添加用户</title>
+
+    <!-- 1. 导入CSS的全局样式 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container" style="width: 450px">
+    <h3 style="text-align: center">添加新用户</h3>
+    <form action="" method="post">
+        <div class="row mb-3">
+            <label for="userName" class="col-sm-2 col-form-label">姓名:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="userName" placeholder="请输入姓名">
+            </div>
+        </div>
+        <fieldset class="row mb-3">
+            <legend class="col-form-label col-sm-2 pt-0">性别:</legend>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <label class="ratio-inline" for="male">
+                        <input class="form-check-input" type="radio" name="userSex" id="male" value="male" checked>男
+                    </label>
+                    <label class="ratio-inline" for="female">
+                        <input class="form-check-input" type="radio" name="userSex" id="female" value="female">女
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+        <div class="row mb-3">
+            <label for="userAge" class="col-sm-2 col-form-label">年龄:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="userAge" placeholder="请输入年龄">
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label for="userBirthplace" class="col-sm-2 col-form-label">籍贯:</label>
+            <div class="col-sm-10">
+                <select class="form-select" aria-label="Default select example" id="userBirthplace">
+                    <option selected>选择籍贯</option>
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="userQq" class="col-sm-2 col-form-label">QQ:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="userQq" placeholder="请输入QQ号">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <label for="userEmail" class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="userEmail" placeholder="请输入邮箱">
+            </div>
+        </div>
+        <div class="form-group" style="text-align: center">
+            <input class="btn btn-primary" type="submit" value="提交" />
+            <input class="btn btn-danger" type="reset" value="重置" />
+            <input class="btn btn-secondary" type="button" value="返回"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       https://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--引入外部数据库配置文件-->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--DataSource,使用Druid的数据源,配置四个基本属性-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
+          p:driverClassName="${mysql.driver}"
+          p:url="${mysql.url}"
+          p:username="${mysql.username}"
+          p:password="${mysql.password}"/>
+
+    <!--sqlSessionFactory，配置好数据源，绑定mybatis主配置文件和映射器配置文件-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:dataSource-ref="dataSource"
+          p:configLocation="classpath:mybatis-config.xml"/>
+
+    <!--spring扫描包下的mapper将会自动注册为bean-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"
+          p:sqlSessionFactoryBeanName="sqlSessionFactory"
+          p:basePackage="com.buzz.dao"/>
+
+</beans>

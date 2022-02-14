@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buzz.dao.UserMapper">
+
+    <select id="findAll" resultType="user">
+        select * from ssm.user
+    </select>
+
+    <select id="findById" resultType="user" parameterType="_int">
+        select * from ssm.user where id = #{uid}
+    </select>
+
+    <insert id="addUser" parameterType="user">
+        insert into ssm.user (name, sex, age, birthplace, qq, email)
+        VALUES (#{name}, #{sex}, #{age}, #{birthplace}, #{qq}, #{email})
+    </insert>
+
+    <update id="updateUser" parameterType="user">
+        update ssm.user
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="sex != null">
+                sex = #{sex},
+            </if>
+            <if test="age != null and age > 0">
+                age = #{age},
+            </if>
+            <if test="birthplace != null and birthplace.length() > 0">
+                birthplace = #{birthplace},
+            </if>
+            <if test="qq != null">
+                qq = #{qq},
+            </if>
+            <if test="email != null">
+                email = #{email},
+            </if>
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+
+    <delete id="deleteUser" parameterType="_int">
+        delete from ssm.user
+        <where>
+            id = #{uid}
+        </where>
+    </delete>
+
+    <sql id="user-condition">
+        <where>
+            <if test="userCondition.name != null and userCondition.name.length() > 0">
+                and name = #{userCondition.name}
+            </if>
+            <if test="userCondition.birthplace != null and userCondition.birthplace.length() > 0">
+                and birthplace = #{userCondition.birthplace}
+            </if>
+            <if test="userCondition.email != null and userCondition.email.length() > 0">
+                and email = #{userCondition.email}
+            </if>
+        </where>
+    </sql>
+
+    <select id="getCounts" resultType="_int" parameterType="userCondition">
+        select count(*) from ssm.user
+        <include refid="user-condition"/>
+
+    </select>
+
+    <select id="findByLimit" resultType="user" parameterType="map">
+        select * from ssm.user
+        <include refid="user-condition"/>
+        limit #{limit} offset #{offset}
+    </select>
+</mapper>
