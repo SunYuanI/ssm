@@ -37,12 +37,23 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public int updateBook(Map<String, Object> map) {
-        return mapper.updateBook(map);
+    public int updateBook(Book book) {
+        return mapper.updateBook(book);
     }
 
     @Override
     public int deleteBook(int id) {
         return mapper.deleteBook(id);
+    }
+
+    @Override
+    public Book findById(int id) {
+        return mapper.findById(id);
+    }
+
+    @Override
+    public List<Book> findByName(String name) {
+        name = "%" + name + "%";
+        return mapper.findByName(name);
     }
 }

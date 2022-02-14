@@ -26,8 +26,8 @@ public class BasicTest {
     public void test() {
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         BookService bookService = context.getBean("bookService", BookService.class);
-        List<Book> all = bookService.findAll();
-        all.forEach(System.out::println);
+        List<Book> java = bookService.findByName("Java");
+        System.out.println(java);
     }
 
     @After

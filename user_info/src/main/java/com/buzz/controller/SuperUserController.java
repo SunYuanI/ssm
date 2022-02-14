@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +36,7 @@ public class SuperUserController {
     }
 
     @RequestMapping("/login")
-    public String login(SuperUser superUser, String verifyCode, Model model, HttpServletRequest request) {
+    public String login(SuperUser superUser, String verifyCode, Model model, HttpServletRequest request, SessionStatus status) {
         String code = (String) request.getSession().getAttribute("verifyCode");
         if (!verifyCode.equalsIgnoreCase(code)) {
             model.addAttribute("msg", VCE);
@@ -47,7 +48,8 @@ public class SuperUserController {
                 return "login";
             }else {
 //                model.addAttribute("superUser", user);
-                model.addAttribute("name", null);
+//                model.addAttribute("name", null);
+                status.setComplete();
                 return "forward:/user/findByPage/1/2";
             }
         }

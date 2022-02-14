@@ -94,13 +94,5 @@ public class UserController {
         return "forward:/user/findByPage/1/2";
     }
 
-    @RequestMapping("/conditionalQuery")
-    public String conditionalQuery(UserCondition condition) {
-
-
-        return "list";
-    }
-
-
 
 }

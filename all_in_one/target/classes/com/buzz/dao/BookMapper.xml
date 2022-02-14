@@ -11,7 +11,7 @@
         insert into book (name, count, detail) VALUES (#{name}, #{count}, #{detail})
     </insert>
 
-    <insert id="updateBook" parameterType="map">
+    <insert id="updateBook" parameterType="book">
         update book
         <set>
             <if test="name != null">
@@ -25,18 +25,31 @@
             </if>
         </set>
         <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
+            <include refid="testId"/>
         </where>
     </insert>
 
     <delete id="deleteBook" parameterType="_int">
         delete from book
         <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
+            <include refid="testId"/>
         </where>
     </delete>
+
+    <select id="findById" parameterType="_int" resultType="book">
+        select * from book
+        <where>
+            <include refid="testId"/>
+        </where>
+    </select>
+
+    <sql id="testId">
+        <if test="id != null">
+            and id = #{id}
+        </if>
+    </sql>
+
+    <select id="findByName" parameterType="string" resultType="book">
+        select * from book where name like #{name};
+    </select>
 </mapper>

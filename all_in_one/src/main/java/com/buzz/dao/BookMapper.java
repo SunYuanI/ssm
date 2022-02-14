@@ -34,7 +34,7 @@ public interface BookMapper {
      * @return int
      * @description 更新书籍
     */
-    int updateBook(Map<String, Object> map);
+    int updateBook(Book book);
 
     /**
      * @author buzz
@@ -42,4 +42,19 @@ public interface BookMapper {
      * @description 删除书籍
     */
     int deleteBook(@Param("id") int id);
+
+    /**
+     * @author buzz
+     * @return com.buzz.pojo.Book
+     * @description 根据id查找书籍
+    */
+    Book findById(@Param("id") int id);
+
+    /**
+     * @author buzz
+     * @return java.util.List<com.buzz.pojo.Book>
+     * @description 根据书名模糊查询
+    */
+    List<Book> findByName(@Param("name") String name);
+
 }

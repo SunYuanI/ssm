@@ -16,7 +16,11 @@ public interface BookService {
 
     int addBook(Book book);
 
-    int updateBook(Map<String, Object> map);
+    int updateBook(Book book);
 
     int deleteBook(int id);
+
+    Book findById(int id);
+
+    List<Book> findByName(String name);
 }
